@@ -22,6 +22,20 @@ export default function Home() {
             Dit is een template om met Bolt te werken waarbij we gebruik maken van Gemini. Dit template is gemaakt door Tom Naberink
           </p>
 
+          {/* Quick Access to Trucks & Barges */}
+          <div className="mb-8">
+            <a 
+              href="/trucks-barges"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-lg hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+            >
+              <span className="text-2xl mr-3">🚛⛵</span>
+              <div className="text-left">
+                <div className="font-semibold">Trucks & Barges Reflectiebegeleidng</div>
+                <div className="text-sm text-blue-100">Gestructureerde analyse van je game-ervaring</div>
+              </div>
+            </a>
+          </div>
+
           {/* AI voor Docenten Logo */}
           <div className="flex justify-center mb-8">
             <div className="bg-white rounded-lg shadow-lg p-4">
