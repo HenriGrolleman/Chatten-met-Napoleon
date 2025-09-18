@@ -15,11 +15,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            Vibe Coding Template
+            AI Template - Gemini 2.5
           </h1>
           
           <p className="text-xl text-purple-700 font-medium mb-6">
-            Dit is een template om met Bolt te werken waarbij we gebruik maken van Gemini. Dit template is gemaakt door Tom Naberink
+            Een eenvoudige AI template met Gemini 2.5 Flash - Gemaakt door Tom Naberink
           </p>
 
           {/* Quick Access to Trucks & Barges */}
@@ -70,7 +70,7 @@ export default function Home() {
                   Stap 1: Fork dit template in GitHub
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Ga naar <a href="https://github.com" target="_blank" className="text-purple-600 hover:text-purple-800 underline">github.com</a> en login in. Ga dan naar deze pagina: <a href="https://github.com/TomNaberink/apitemplateTom" target=\"_blank" className="text-purple-600 hover:text-purple-800 underline">https://github.com/TomNaberink/apitemplateTom</a>
+                  Ga naar <a href="https://github.com" target="_blank" className="text-purple-600 hover:text-purple-800 underline">github.com</a> en login in. Ga dan naar deze pagina: <a href="https://github.com/TomNaberink/apitemplateTom" target=\"_blank\" className="text-purple-600 hover:text-purple-800 underline">https://github.com/TomNaberink/apitemplateTom</a>
                 </p>
                 <p className="text-gray-600 mb-3">
                   Klik rechtsbovenin op '<strong>Use this template</strong>', geef het een gepaste naam voor je project en klik op '<strong>create fork</strong>'.
