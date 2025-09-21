@@ -1,6 +1,5 @@
 import TestChatBot from '@/components/TestChatBot'
 import CopyButton from '@/components/CopyButton'
-import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -39,7 +38,7 @@ export default function Home() {
           {/* AI voor Docenten Logo */}
           <div className="flex justify-center mb-8">
             <div className="bg-white rounded-lg shadow-lg p-4">
-              <Image 
+              <img 
                 src="/images/ai-voor-docenten-logo.png" 
                 alt="AI voor Docenten Logo" 
                 width={192} 
