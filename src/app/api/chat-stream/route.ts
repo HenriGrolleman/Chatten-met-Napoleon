@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     console.log('Received request body:', body)
     
-    const { message, image, images } = body
+    const { message, image, images, useGrounding = true, aiModel = 'smart' } = body
 
     if (!message) {
       return NextResponse.json(
@@ -51,15 +51,36 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Gebruik altijd Gemini 2.5 Flash
-    const modelName = 'gemini-2.5-flash-preview-05-20'
+    // Selecteer het juiste model op basis van aiModel
+    const modelName = aiModel === 'pro' ? 'gemini-2.5-pro-preview-06-05' :
+                     aiModel === 'smart' ? 'gemini-2.5-flash-preview-05-20' :
+                     'gemini-2.0-flash-exp' // internet
     const model = genAI.getGenerativeModel({ model: modelName })
+
+    // Configureer tools array - grounding alleen voor Gemini 2.0 (internet model)
+    const tools = (aiModel === 'internet' && useGrounding) ? [googleSearchTool] : []
 
     // Create streaming response
     const stream = new ReadableStream({
       async start(controller) {
         try {
           let result;
+          
+          // Helper function to generate content with fallback
+          const generateStreamWithFallback = async (requestConfig: any) => {
+            try {
+              return await model.generateContentStream(requestConfig)
+            } catch (error: any) {
+              // If grounding fails, retry without tools
+              if (useGrounding && (error.message?.includes('Search Grounding is not supported') || 
+                                  error.message?.includes('google_search_retrieval is not supported'))) {
+                console.log('Grounding not supported, retrying streaming without grounding...')
+                const { tools, ...configWithoutTools } = requestConfig
+                return await model.generateContentStream(configWithoutTools)
+              }
+              throw error
+            }
+          }
           
           if (images && images.length > 0) {
             // Multiple images - use new images array
@@ -73,8 +94,9 @@ export async function POST(request: NextRequest) {
               }
             })
             
-            result = await model.generateContentStream({
-              contents: [{ role: 'user', parts: [{ text: message }, ...imageParts] }]
+            result = await generateStreamWithFallback({
+              contents: [{ role: 'user', parts: [{ text: message }, ...imageParts] }],
+              tools: tools
             })
           } else if (image) {
             // Backward compatibility - single image (legacy)
@@ -87,13 +109,15 @@ export async function POST(request: NextRequest) {
               }
             }
             
-            result = await model.generateContentStream({
-              contents: [{ role: 'user', parts: [{ text: message }, imagePart] }]
+            result = await generateStreamWithFallback({
+              contents: [{ role: 'user', parts: [{ text: message }, imagePart] }],
+              tools: tools
             })
           } else {
             // Text only
-            result = await model.generateContentStream({
-              contents: [{ role: 'user', parts: [{ text: message }] }]
+            result = await generateStreamWithFallback({
+              contents: [{ role: 'user', parts: [{ text: message }] }],
+              tools: tools
             })
           }
 

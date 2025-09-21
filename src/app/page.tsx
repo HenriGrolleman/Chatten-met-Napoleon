@@ -1,5 +1,6 @@
 import TestChatBot from '@/components/TestChatBot'
 import CopyButton from '@/components/CopyButton'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -14,11 +15,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            AI Template - Gemini 2.5
+            Vibe Coding Template
           </h1>
           
           <p className="text-xl text-purple-700 font-medium mb-6">
-            Een eenvoudige AI template met Gemini 2.5 Flash - Gemaakt door Tom Naberink
+            Dit is een template om met Bolt te werken waarbij we gebruik maken van Gemini. Dit template is gemaakt door Tom Naberink
           </p>
 
           {/* Quick Access to Trucks & Barges */}
@@ -38,7 +39,7 @@ export default function Home() {
           {/* AI voor Docenten Logo */}
           <div className="flex justify-center mb-8">
             <div className="bg-white rounded-lg shadow-lg p-4">
-              <img 
+              <Image 
                 src="/images/ai-voor-docenten-logo.png" 
                 alt="AI voor Docenten Logo" 
                 width={192} 
