@@ -69,7 +69,7 @@ export default function Home() {
                   Stap 1: Fork dit template in GitHub
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Ga naar <a href="https://github.com" target="_blank" className="text-purple-600 hover:text-purple-800 underline">github.com</a> en login in. Ga dan naar deze pagina: <a href="https://github.com/TomNaberink/apitemplateTom" target="_blank" className="text-purple-600 hover:text-purple-800 underline">https://github.com/TomNaberink/apitemplateTom</a>
+                  Ga naar <a href="https://github.com" target="_blank" className="text-purple-600 hover:text-purple-800 underline">github.com</a> en login in. Ga dan naar deze pagina: <a href="https://github.com/TomNaberink/apitemplateTom" target=\"_blank" className="text-purple-600 hover:text-purple-800 underline">https://github.com/TomNaberink/apitemplateTom</a>
                 </p>
                 <p className="text-gray-600 mb-3">
                   Klik rechtsbovenin op '<strong>Use this template</strong>', geef het een gepaste naam voor je project en klik op '<strong>create fork</strong>'.
