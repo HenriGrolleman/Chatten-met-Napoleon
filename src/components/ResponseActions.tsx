@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Document, Paragraph, TextRun } from 'docx'
 import GeminiTTS, { GEMINI_VOICES, EMOTION_STYLES } from './GeminiTTS'
 
 interface ResponseActionsProps {
@@ -140,7 +139,7 @@ export default function ResponseActions({
   }
 
   // Advanced markdown to Word document converter
-  const convertMarkdownToWordDocument = (markdown: string): Document => {
+  const convertMarkdownToWordDocument = (markdown: string, Document: any, Paragraph: any, TextRun: any) => {
     const lines = markdown.split('\n')
     const paragraphs: Paragraph[] = []
     let currentBulletList: string[] = []
@@ -481,9 +480,9 @@ export default function ResponseActions({
     
     try {
       // Import Packer dynamically to avoid SSR issues
-      const { Packer } = await import('docx')
+      const { Document, Paragraph, TextRun, Packer } = await import('docx')
       
-      const doc = convertMarkdownToWordDocument(content)
+      const doc = convertMarkdownToWordDocument(content, Document, Paragraph, TextRun)
       const blob = await Packer.toBlob(doc)
       
       // Create download link
