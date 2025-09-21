@@ -196,7 +196,7 @@ DOEL HUIDIGE FASE:`
 
     const payload = {
       message: `${systemPrompt}\n\nStudent antwoord: "${userMessage}"`,
-      aiModel: 'smart'
+      // Gebruik altijd Gemini 2.5 Flash
     }
 
     try {
